@@ -1,11 +1,13 @@
 import 'package:note_app_clean_architecture/feature/domain/repositories/firebase_repository.dart';
 
-class IsSignInUserCase {
+import '../entities/user_entity.dart';
+
+class SignInUseCase {
   final FirebaseRepository repository;
 
-  IsSignInUserCase({required this.repository});
+  SignInUseCase({required this.repository});
 
-  Future<bool> call() async {
-    return repository.isSignIn();
+  Future<void> call(UserEntity user) async {
+    return repository.signIn(user);
   }
 }

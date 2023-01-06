@@ -1,11 +1,11 @@
 import 'package:note_app_clean_architecture/feature/domain/repositories/firebase_repository.dart';
 
-class IsSignInUserCase {
+class SignOutUseCase {
   final FirebaseRepository repository;
 
-  IsSignInUserCase({required this.repository});
+  SignOutUseCase({required this.repository});
 
-  Future<bool> call() async {
-    return repository.isSignIn();
+  Future<void> call() async {
+    return repository.signOut();
   }
 }
