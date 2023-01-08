@@ -1,11 +1,12 @@
+import 'package:note_app_clean_architecture/feature/domain/entities/note_entity.dart';
 import 'package:note_app_clean_architecture/feature/domain/repositories/firebase_repository.dart';
 
-class IsSignInUserCase {
+class UpdateNoteUseCase {
   final FirebaseRepository repository;
 
-  IsSignInUserCase({required this.repository});
+  UpdateNoteUseCase({required this.repository});
 
-  Future<bool> call() async {
-    return repository.isSignIn();
+  Future<void> call(NoteEntity note) async {
+    return repository.updateNote(note);
   }
 }
