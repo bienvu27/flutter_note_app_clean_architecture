@@ -17,6 +17,7 @@ import 'package:note_app_clean_architecture/feature/presentation/cubit/auth/auth
 import 'package:note_app_clean_architecture/feature/presentation/cubit/note/note_cubit.dart';
 import 'package:note_app_clean_architecture/feature/presentation/cubit/user/user_cubit.dart';
 
+import 'feature/data/remote/data_sources/firebase_remote_data_source.dart';
 import 'feature/domain/use_cases/update_note_usecase.dart';
 
 GetIt sl = GetIt.instance;
@@ -53,12 +54,15 @@ Future<void> init() async {
   // repository
   sl.registerLazySingleton<FirebaseRepository>(() => FirebaseRepositoryImpl(remoteDataSource: sl.call()));
   // data source
-  sl.registerLazySingleton<FirebaseRemoteDataSourceImpl>(
+  sl.registerLazySingleton<FirebaseRemoteDataSource>(
       () => FirebaseRemoteDataSourceImpl(auth: sl.call(), firestore: sl.call()));
 
   // External
   final auth = FirebaseAuth.instance;
   final fireStore = FirebaseFirestore.instance;
 
+
   sl.registerLazySingleton(() => auth);
+  sl.registerLazySingleton(() => fireStore);
+
 }
